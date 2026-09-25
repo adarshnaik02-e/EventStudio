@@ -1,0 +1,117 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EventStudioSpec",
+  "type": "object",
+  "required": ["content", "styling"],
+  "properties": {
+    "content": {
+      "type": "object",
+      "required": ["title", "tagline", "date", "time", "venue"],
+      "properties": {
+        "title": { "type": "string" },
+        "slug": { "type": "string" },
+        "tagline": { "type": "string" },
+        "date": { "type": "string" },
+        "time": { "type": "string" },
+        "venue": { "type": "string" },
+        "badges": { "type": "array", "items": { "type": "string" } },
+        "ctaText": { "type": "string" },
+        "countdownISO": { "type": "string", "format": "date-time" },
+        "about": { "type": "string" },
+        "highlights": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "icon": { "type": "string" },
+              "title": { "type": "string" },
+              "description": { "type": "string" }
+            }
+          }
+        },
+        "schedule": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "time": { "type": "string" },
+              "title": { "type": "string" },
+              "description": { "type": "string" },
+              "speaker": { "type": "string" },
+              "tag": { "type": "string" }
+            }
+          }
+        },
+        "registration": {
+          "type": "object",
+          "properties": {
+            "fee": { "type": "string" },
+            "deadline": { "type": "string" },
+            "formUrl": { "type": "string" },
+            "perks": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "contacts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "role": { "type": "string" },
+              "contact": { "type": "string" }
+            }
+          }
+        },
+        "faqs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "question": { "type": "string" },
+              "answer": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "styling": {
+      "type": "object",
+      "properties": {
+        "colors": {
+          "type": "object",
+          "properties": {
+            "primaryAccent": { "type": "string" },
+            "secondaryAccent": { "type": "string" },
+            "backgroundType": { "type": "string", "enum": ["solid", "mesh-gradient", "glass-dark", "aurora"] },
+            "surfaceColor": { "type": "string" },
+            "textColor": { "type": "string" }
+          }
+        },
+        "typography": {
+          "type": "object",
+          "properties": {
+            "fontHeading": { "type": "string" },
+            "fontBody": { "type": "string" },
+            "fontSizeScale": { "type": "number", "minimum": 0.8, "maximum": 1.4 }
+          }
+        },
+        "visualStyle": {
+          "type": "object",
+          "properties": {
+            "borderStyle": { "type": "string", "enum": ["sharp", "rounded-xl", "pill", "glassmorphism"] },
+            "shadowIntensity": { "type": "string", "enum": ["none", "soft", "medium", "strong"] },
+            "glowEffects": { "type": "boolean" }
+          }
+        },
+        "animations": {
+          "type": "object",
+          "properties": {
+            "animationSpeed": { "type": "string", "enum": ["subtle", "energetic"] },
+            "enableFloatingCards": { "type": "boolean" }
+          }
+        },
+        "preset": { "type": "string", "enum": ["brutalist", "cyberpunk", "luxe-minimal", "festival-vibrant"] }
+      }
+    }
+  }
+}

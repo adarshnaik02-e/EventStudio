@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ⚡ EventForge — AI Event Page Generator
 
-## Getting Started
+> **Describe it. We'll build it.** Paste unstructured event text → get a stunning, production-ready event webpage instantly.
 
-First, run the development server:
+![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js) ![Tailwind](https://img.shields.io/badge/Tailwind-4-38bdf8?logo=tailwindcss) ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6?logo=typescript)
+
+---
+
+## ✨ Features
+
+- **AI-Powered Extraction** — Paste any unstructured event text; the LLM extracts all details and fills in creative, context-aware content for anything missing
+- **4 Stunning Themes** — Dark Neon Hackathon, Vibrant Cultural, Sleek Tech Conf, Editorial Minimal
+- **Live Countdown Timer** — Real-time animated countdown to the event
+- **Dual-Pane Workspace** — Left: text input + JSON editor | Right: live preview with viewport toggle
+- **Responsive Preview** — Toggle between Desktop, Tablet (768px), and Mobile (390px) views
+- **One-Click HTML Export** — Downloads a fully self-contained `index.html` with all styles, animations, and countdown baked in
+- **Copy Embed Code** — Generates a base64-encoded iframe embed snippet
+- **JSON Live Sync** — Collapsible JSON editor syncs changes to the preview in real-time
+- **Quick-Fill Presets** — Hackathon, Cultural Fest, Tech Conf sample texts
+
+---
+
+## 🚀 Getting Started
 
 ```bash
+# Install dependencies
+npm install
+
+# (Optional) Add your OpenAI API key for real AI extraction
+cp .env.local.example .env.local
+# Edit .env.local and add: OPENAI_API_KEY=sk-...
+
+# Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+> **Without an API key**, the app uses smart rule-based mock data that detects event type (hackathon/cultural/tech) from keywords and generates realistic, complete event pages.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🎨 Themes
 
-To learn more about Next.js, take a look at the following resources:
+| Theme | Best For | Aesthetic |
+|-------|----------|-----------|
+| `dark-neon-hackathon` | Hackathons, coding events | Cyberpunk, neon emerald/violet, monospace |
+| `vibrant-cultural` | Festivals, cultural events | Warm sunset gradients, amber/rose/purple |
+| `sleek-tech-conf` | Conferences, summits | Enterprise dark indigo, crisp cyan |
+| `editorial-minimal` | Workshops, academic events | High-contrast monochrome, brutalist |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📁 Project Structure
 
-## Deploy on Vercel
+```
+event-page-generator/
+├── app/
+│   ├── api/generate/route.ts   # LLM extraction API
+│   ├── page.tsx                # Main dual-pane UI
+│   ├── layout.tsx
+│   └── globals.css
+├── components/
+│   └── EventPageRenderer.tsx   # Full event page renderer
+├── lib/
+│   ├── types.ts                # TypeScript types + theme configs + presets
+│   └── exportHtml.ts           # Self-contained HTML generator
+└── specs/
+    └── event-page-spec.json    # JSON Schema for event data
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🔧 Tech Stack
+
+- **Next.js 16** (App Router)
+- **Tailwind CSS 4**
+- **TypeScript 5**
+- **OpenAI GPT-4o-mini** (optional, falls back to rule-based mock)
+
+---
+
+## 📦 Deploying
+
+```bash
+npm run build
+npm run start
+```
+
+Or deploy to Vercel — set `OPENAI_API_KEY` as an environment variable in your project settings.

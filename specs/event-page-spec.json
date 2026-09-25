@@ -1,0 +1,108 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EventPageSpec",
+  "type": "object",
+  "required": ["meta", "hero", "countdown", "about", "schedule", "registration", "contact", "faq"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["title", "slug", "theme", "accentColor", "bgGradient"],
+      "properties": {
+        "title": { "type": "string" },
+        "slug": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "theme": {
+          "type": "string",
+          "enum": ["dark-neon-hackathon", "vibrant-cultural", "sleek-tech-conf", "editorial-minimal"]
+        },
+        "accentColor": { "type": "string", "description": "Hex color code e.g. #00ff88" },
+        "bgGradient": { "type": "string", "description": "Tailwind gradient classes or CSS gradient string" }
+      }
+    },
+    "hero": {
+      "type": "object",
+      "required": ["tagline", "date", "time", "venue", "badges", "ctaText"],
+      "properties": {
+        "tagline": { "type": "string" },
+        "date": { "type": "string" },
+        "time": { "type": "string" },
+        "venue": { "type": "string" },
+        "badges": { "type": "array", "items": { "type": "string" } },
+        "ctaText": { "type": "string" }
+      }
+    },
+    "countdown": {
+      "type": "object",
+      "required": ["targetDateISO"],
+      "properties": {
+        "targetDateISO": { "type": "string", "format": "date-time" }
+      }
+    },
+    "about": {
+      "type": "object",
+      "required": ["summary", "keyHighlights"],
+      "properties": {
+        "summary": { "type": "string" },
+        "keyHighlights": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["icon", "title", "description"],
+            "properties": {
+              "icon": { "type": "string" },
+              "title": { "type": "string" },
+              "description": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "schedule": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["time", "title", "description", "speakerOrLead", "tag"],
+        "properties": {
+          "time": { "type": "string" },
+          "title": { "type": "string" },
+          "description": { "type": "string" },
+          "speakerOrLead": { "type": "string" },
+          "tag": { "type": "string" }
+        }
+      }
+    },
+    "registration": {
+      "type": "object",
+      "required": ["formUrl", "deadline", "fee", "perks"],
+      "properties": {
+        "formUrl": { "type": "string" },
+        "deadline": { "type": "string" },
+        "fee": { "type": "string" },
+        "perks": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "contact": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "role", "contact"],
+        "properties": {
+          "name": { "type": "string" },
+          "role": { "type": "string" },
+          "contact": { "type": "string" },
+          "avatarUrl": { "type": "string" }
+        }
+      }
+    },
+    "faq": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["question", "answer"],
+        "properties": {
+          "question": { "type": "string" },
+          "answer": { "type": "string" }
+        }
+      }
+    }
+  }
+}
